@@ -12,7 +12,7 @@ const genDiff = (filepathA, filepathB) => {
 
   const keys = _.sortBy(_.uniq([...Object.keys(dataA), ...Object.keys(dataB)]));
 
-  return keys.flatMap((key) => {
+  const rs = keys.flatMap((key) => {
     if (!_.has(dataA, key)) {
       return [`+ ${key}: ${dataB[key]}`];
     }
@@ -24,6 +24,8 @@ const genDiff = (filepathA, filepathB) => {
     }
     return [`- ${key}: ${dataA[key]}`, `+ ${key}: ${dataB[key]}`];
   });
+
+  return `{\n  ${rs.join('\n  ')}\n}`;
 };
 
 export default genDiff;
