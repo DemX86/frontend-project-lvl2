@@ -1,4 +1,4 @@
-name: CI Lint Test
+name: install-lint-test
 
 on:
   push:
