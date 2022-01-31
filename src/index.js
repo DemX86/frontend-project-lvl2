@@ -1,17 +1,19 @@
-import { readFileSync } from 'fs';
 import _ from 'lodash';
+import getParser from './parsers.js';
+import { getFileExt, readFileContent } from './files.js';
 
-const readFileContent = (filepath) => readFileSync(filepath, 'utf8');
+const loadData = (filepath) => {
+  const fileExt = getFileExt(filepath);
+  const parse = getParser(fileExt);
+  const fileContent = readFileContent(filepath);
+  return parse(fileContent);
+};
 
 const genDiff = (filepathA, filepathB) => {
-  const fileContentA = readFileContent(filepathA);
-  const fileContentB = readFileContent(filepathB);
-
-  const dataA = JSON.parse(fileContentA);
-  const dataB = JSON.parse(fileContentB);
+  const dataA = loadData(filepathA);
+  const dataB = loadData(filepathB);
 
   const keys = _.sortBy(_.uniq([...Object.keys(dataA), ...Object.keys(dataB)]));
-
   const rs = keys.flatMap((key) => {
     if (!_.has(dataA, key)) {
       return [`+ ${key}: ${dataB[key]}`];
