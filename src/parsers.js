@@ -1,17 +1,15 @@
 import yaml from 'js-yaml';
-import _ from 'lodash';
-
-const PARSERS = {
-  '.json': JSON.parse,
-  '.yml': yaml.load,
-  '.yaml': yaml.load,
-};
 
 const getParser = (fileExt) => {
-  if (!_.has(PARSERS, fileExt)) {
+  let parse;
+  if (fileExt === '.json') {
+    parse = JSON.parse;
+  } else if (fileExt === '.yml' || fileExt === '.yaml') {
+    parse = yaml.load;
+  } else {
     throw new Error(`Files with extension ${fileExt} are not supported`);
   }
-  return PARSERS[fileExt];
+  return parse;
 };
 
 export default getParser;

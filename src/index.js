@@ -1,6 +1,7 @@
-import _ from 'lodash';
 import getParser from './parsers.js';
 import { getFileExt, readFileContent } from './files.js';
+import getFormatter from './formatters.js';
+import buildDiffTree from './diff.js';
 
 const loadData = (filepath) => {
   const fileExt = getFileExt(filepath);
@@ -9,25 +10,13 @@ const loadData = (filepath) => {
   return parse(fileContent);
 };
 
-const genDiff = (filepathA, filepathB) => {
-  const dataA = loadData(filepathA);
-  const dataB = loadData(filepathB);
+const genDiff = (filepath1, filepath2, format = 'stylish') => {
+  const fileData1 = loadData(filepath1);
+  const fileData2 = loadData(filepath2);
+  const diffTree = buildDiffTree(fileData1, fileData2);
 
-  const keys = _.sortBy(_.uniq([...Object.keys(dataA), ...Object.keys(dataB)]));
-  const rs = keys.flatMap((key) => {
-    if (!_.has(dataA, key)) {
-      return [`+ ${key}: ${dataB[key]}`];
-    }
-    if (!_.has(dataB, key)) {
-      return [`- ${key}: ${dataA[key]}`];
-    }
-    if (dataA[key] === dataB[key]) {
-      return [`  ${key}: ${dataA[key]}`];
-    }
-    return [`- ${key}: ${dataA[key]}`, `+ ${key}: ${dataB[key]}`];
-  });
-
-  return `{\n  ${rs.join('\n  ')}\n}`;
+  const formatDiff = getFormatter(format);
+  return formatDiff(diffTree);
 };
 
 export default genDiff;
