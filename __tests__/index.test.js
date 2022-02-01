@@ -1,17 +1,34 @@
-import expectedOutput from '../__fixtures__/expected.js';
+import expectedOutputPlain from '../__fixtures__/expectedPlain.js';
+import expectedOutputStylish from '../__fixtures__/expectedStylish.js';
 import genDiff from '../src/index.js';
 
-test('JSON files', () => {
-  expect(genDiff('__fixtures__/file1.json', '__fixtures__/file2.json'))
-    .toStrictEqual(expectedOutput);
+const path1Json = '__fixtures__/file1.json';
+const path2Json = '__fixtures__/file2.json';
+const path1Yml = '__fixtures__/file1.yml';
+const path2Yaml = '__fixtures__/file2.yaml';
+const path1Txt = '__fixtures__/file1.txt';
+
+test('Plain JSON files', () => {
+  expect(genDiff(path1Json, path2Json, 'plain'))
+    .toBe(expectedOutputPlain);
 });
 
-test('YAML files', () => {
-  expect(genDiff('__fixtures__/file1.yml', '__fixtures__/file2.yaml'))
-    .toStrictEqual(expectedOutput);
+test('Plain YAML files', () => {
+  expect(genDiff(path1Yml, path2Yaml, 'plain'))
+    .toBe(expectedOutputPlain);
+});
+
+test('Stylish JSON files', () => {
+  expect(genDiff(path1Json, path2Json))
+    .toBe(expectedOutputStylish);
+});
+
+test('Stylish YAML files', () => {
+  expect(genDiff(path1Yml, path2Yaml))
+    .toBe(expectedOutputStylish);
 });
 
 test('Unsupported files', () => {
-  expect(() => genDiff('__fixtures__/file1.txt', '__fixtures__/file2.json'))
+  expect(() => genDiff(path1Txt, path2Json))
     .toThrowError('Files with extension .txt are not supported');
 });
