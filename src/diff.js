@@ -9,19 +9,19 @@ const buildDiffTree = (data1, data2) => {
       key,
       value1,
       value2,
-      action: null,
+      status: null,
       children: null,
     };
     if (_.isPlainObject(value1) && _.isPlainObject(value2) && value1 !== null && value2 !== null) {
       node.children = buildDiffTree(value1, value2);
     } else if (!_.has(data1, key)) {
-      node.action = 'added';
+      node.status = 'added';
     } else if (!_.has(data2, key)) {
-      node.action = 'removed';
+      node.status = 'removed';
     } else if (value1 === value2) {
-      node.action = 'unchanged';
+      node.status = 'unchanged';
     } else {
-      node.action = 'changed';
+      node.status = 'changed';
     }
     return node;
   });

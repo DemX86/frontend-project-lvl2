@@ -6,6 +6,9 @@ const getFileExt = (filepath) => {
   return ext.toLowerCase();
 };
 
-const readFileContent = (filepath) => fs.readFileSync(filepath, 'utf8');
+const readFileContent = (filepath) => {
+  const encoding = 'utf8';
+  return fs.readFileSync(filepath, encoding);
+};
 
 export { getFileExt, readFileContent };

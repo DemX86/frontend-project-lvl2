@@ -12,23 +12,26 @@ const formatValue = (value) => {
 
 const formatPlain = (diffTree) => {
   const iter = (tree, path) => tree
-    .filter((node) => node.action !== 'unchanged')
+    .filter((node) => node.status !== 'unchanged')
     .flatMap((node) => {
       const pathCurrent = (!path) ? node.key : [path, node.key].join('.');
       if (node.children) {
         return iter(node.children, pathCurrent);
       }
-      const line = `Property '${pathCurrent}' was`;
-      switch (node.action) {
+      let line = `Property '${pathCurrent}' was`;
+      switch (node.status) {
         case 'added':
-          return `${line} added with value: ${formatValue(node.value2)}`;
+          line = `${line} added with value: ${formatValue(node.value2)}`;
+          break;
         case 'removed':
-          return `${line} removed`;
+          line = `${line} removed`;
+          break;
         case 'changed':
-          return `${line} updated. From ${formatValue(node.value1)} to ${formatValue(node.value2)}`;
-        default:
-          throw new Error(`Unknown node action: ${node.action}`);
+          line = `${line} updated. From ${formatValue(node.value1)} to ${formatValue(node.value2)}`;
+          break;
+        // no default
       }
+      return line;
     });
   const lines = iter(diffTree, '');
   return lines.join('\n');

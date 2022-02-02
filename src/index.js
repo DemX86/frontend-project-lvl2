@@ -1,7 +1,7 @@
+import buildDiffTree from './diff.js';
+import getFormatter from './formatters/index.js';
 import getParser from './parsers.js';
 import { getFileExt, readFileContent } from './files.js';
-import getFormatter from './formatters/index.js';
-import buildDiffTree from './diff.js';
 
 const loadData = (filepath) => {
   const fileExt = getFileExt(filepath);

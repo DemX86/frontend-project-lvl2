@@ -10,7 +10,7 @@ program
   .description('Compares two configuration files and shows a difference')
   .version('1.0.0')
   .addOption(new Option('-f, --format <type>', 'output format')
-    .choices(['plain', 'stylish'])
+    .choices(['json', 'plain', 'stylish'])
     .default('stylish'))
   .argument('filepath1')
   .argument('filepath2')
