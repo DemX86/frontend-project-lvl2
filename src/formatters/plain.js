@@ -18,20 +18,12 @@ const formatPlain = (diffTree) => {
       if (node.children) {
         return iter(node.children, pathCurrent);
       }
-      let line = `Property '${pathCurrent}' was`;
-      switch (node.status) {
-        case 'added':
-          line = `${line} added with value: ${formatValue(node.value2)}`;
-          break;
-        case 'removed':
-          line = `${line} removed`;
-          break;
-        case 'changed':
-          line = `${line} updated. From ${formatValue(node.value1)} to ${formatValue(node.value2)}`;
-          break;
-        // no default
-      }
-      return line;
+      const line = `Property '${pathCurrent}' was`;
+      return {
+        added: `${line} added with value: ${formatValue(node.value2)}`,
+        removed: `${line} removed`,
+        changed: `${line} updated. From ${formatValue(node.value1)} to ${formatValue(node.value2)}`,
+      }[node.status];
     });
   const lines = iter(diffTree, '');
   return lines.join('\n');

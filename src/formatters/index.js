@@ -2,21 +2,12 @@ import formatJson from './json.js';
 import formatPlain from './plain.js';
 import formatStylish from './stylish.js';
 
-const getFormatter = (formatName) => {
-  let format;
-  switch (formatName) {
-    case 'json':
-      format = formatJson;
-      break;
-    case 'plain':
-      format = formatPlain;
-      break;
-    case 'stylish':
-      format = formatStylish;
-      break;
-    // no default
-  }
-  return format;
+const FORMATTERS = {
+  json: formatJson,
+  plain: formatPlain,
+  stylish: formatStylish,
 };
+
+const getFormatter = (formatName) => FORMATTERS[formatName];
 
 export default getFormatter;

@@ -2,29 +2,20 @@ import _ from 'lodash';
 
 const INDENT = ' '.repeat(4);
 
-const formatBlock = (lines, depth, nodeType, isSeparateBlock = false) => {
-  const getBraces = (type) => {
-    let braces;
-    switch (type) {
-      case 'array':
-        braces = '[]';
-        break;
-      case 'object':
-        braces = '{}';
-        break;
-      // no default
-    }
-    return braces;
-  };
+const BRACES = {
+  array: '[]',
+  object: '{}',
+};
 
-  const [braceOpening, braceClosing] = getBraces(nodeType);
-  let block = [
+const formatBlock = (lines, depth, nodeType, isSeparateBlock = false) => {
+  const [braceOpening, braceClosing] = BRACES[nodeType];
+  const block = [
     braceOpening,
     lines.join(',\n'),
     `${INDENT.repeat(depth - 1)}${braceClosing}`,
   ].join('\n');
   if (isSeparateBlock) {
-    block = `${INDENT.repeat(depth - 1)}${block}`;
+    return `${INDENT.repeat(depth - 1)}${block}`;
   }
   return block;
 };

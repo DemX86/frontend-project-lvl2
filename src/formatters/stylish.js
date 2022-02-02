@@ -27,26 +27,15 @@ const formatStylish = (diffTree) => {
       if (node.children) {
         return `${node.key}: ${iter(node.children, depth + 1)}`;
       }
-      let line;
-      switch (node.status) {
-        case 'added':
-          line = `+ ${node.key}: ${formatValue(node.value2, depth)}`;
-          break;
-        case 'removed':
-          line = `- ${node.key}: ${formatValue(node.value1, depth)}`;
-          break;
-        case 'unchanged':
-          line = `${node.key}: ${formatValue(node.value1, depth)}`;
-          break;
-        case 'changed':
-          line = [
-            `- ${node.key}: ${formatValue(node.value1, depth)}`,
-            `+ ${node.key}: ${formatValue(node.value2, depth)}`,
-          ];
-          break;
-        // no default
-      }
-      return line;
+      return {
+        added: `+ ${node.key}: ${formatValue(node.value2, depth)}`,
+        removed: `- ${node.key}: ${formatValue(node.value1, depth)}`,
+        unchanged: `${node.key}: ${formatValue(node.value1, depth)}`,
+        changed: [
+          `- ${node.key}: ${formatValue(node.value1, depth)}`,
+          `+ ${node.key}: ${formatValue(node.value2, depth)}`,
+        ],
+      }[node.status];
     });
     return formatBlock(lines, depth);
   };
