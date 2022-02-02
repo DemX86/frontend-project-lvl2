@@ -5,23 +5,39 @@ const buildDiffTree = (data1, data2) => {
   return keys.map((key) => {
     const value1 = data1[key];
     const value2 = data2[key];
-    const node = {
+    if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
+      return {
+        key,
+        children: buildDiffTree(value1, value2),
+      };
+    }
+    if (!_.has(data1, key)) {
+      return {
+        key,
+        value2,
+        status: 'added',
+      };
+    }
+    if (!_.has(data2, key)) {
+      return {
+        key,
+        value1,
+        status: 'removed',
+      };
+    }
+    if (value1 === value2) {
+      return {
+        key,
+        value1,
+        status: 'unchanged',
+      };
+    }
+    return {
       key,
       value1,
       value2,
+      status: 'changed',
     };
-    if (_.isPlainObject(value1) && _.isPlainObject(value2) && value1 !== null && value2 !== null) {
-      node.children = buildDiffTree(value1, value2);
-    } else if (!_.has(data1, key)) {
-      node.status = 'added';
-    } else if (!_.has(data2, key)) {
-      node.status = 'removed';
-    } else if (value1 === value2) {
-      node.status = 'unchanged';
-    } else {
-      node.status = 'changed';
-    }
-    return node;
   });
 };
 

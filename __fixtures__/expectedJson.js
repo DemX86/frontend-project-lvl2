@@ -1,33 +1,6 @@
 export default `[
     {
         "key": "common",
-        "value1": {
-            "setting1": "Value 1",
-            "setting2": 200,
-            "setting3": true,
-            "setting6": {
-                "key": "value",
-                "doge": {
-                    "wow": ""
-                }
-            }
-        },
-        "value2": {
-            "follow": false,
-            "setting1": "Value 1",
-            "setting3": null,
-            "setting4": "blah blah",
-            "setting5": {
-                "key5": "value5"
-            },
-            "setting6": {
-                "key": "value",
-                "ops": "vops",
-                "doge": {
-                    "wow": "so much"
-                }
-            }
-        },
         "children": [
             {
                 "key": "follow",
@@ -37,7 +10,6 @@ export default `[
             {
                 "key": "setting1",
                 "value1": "Value 1",
-                "value2": "Value 1",
                 "status": "unchanged"
             },
             {
@@ -65,28 +37,9 @@ export default `[
             },
             {
                 "key": "setting6",
-                "value1": {
-                    "key": "value",
-                    "doge": {
-                        "wow": ""
-                    }
-                },
-                "value2": {
-                    "key": "value",
-                    "ops": "vops",
-                    "doge": {
-                        "wow": "so much"
-                    }
-                },
                 "children": [
                     {
                         "key": "doge",
-                        "value1": {
-                            "wow": ""
-                        },
-                        "value2": {
-                            "wow": "so much"
-                        },
                         "children": [
                             {
                                 "key": "wow",
@@ -99,7 +52,6 @@ export default `[
                     {
                         "key": "key",
                         "value1": "value",
-                        "value2": "value",
                         "status": "unchanged"
                     },
                     {
@@ -113,18 +65,6 @@ export default `[
     },
     {
         "key": "group1",
-        "value1": {
-            "baz": "bas",
-            "foo": "bar",
-            "nest": {
-                "key": "value"
-            }
-        },
-        "value2": {
-            "foo": "bar",
-            "baz": "bars",
-            "nest": "str"
-        },
         "children": [
             {
                 "key": "baz",
@@ -135,7 +75,6 @@ export default `[
             {
                 "key": "foo",
                 "value1": "bar",
-                "value2": "bar",
                 "status": "unchanged"
             },
             {
