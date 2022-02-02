@@ -12,7 +12,7 @@ Supported files:
 * YAML (`.yml` and `.yaml`)
 
 Output formats:
-* `stylish` (default) — handy diff tree with `+` and `-` changes notation
+* `stylish` (default) — handy diff tree with `+` and `-` change notation
 * `plain` — human-readable report: what happened with items
 * `json` — JSON-compatible output of the internal difference tree
 
