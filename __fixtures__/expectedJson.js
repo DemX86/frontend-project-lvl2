@@ -28,47 +28,40 @@ export default `[
                 }
             }
         },
-        "status": null,
         "children": [
             {
                 "key": "follow",
                 "value2": false,
-                "status": "added",
-                "children": null
+                "status": "added"
             },
             {
                 "key": "setting1",
                 "value1": "Value 1",
                 "value2": "Value 1",
-                "status": "unchanged",
-                "children": null
+                "status": "unchanged"
             },
             {
                 "key": "setting2",
                 "value1": 200,
-                "status": "removed",
-                "children": null
+                "status": "removed"
             },
             {
                 "key": "setting3",
                 "value1": true,
                 "value2": null,
-                "status": "changed",
-                "children": null
+                "status": "changed"
             },
             {
                 "key": "setting4",
                 "value2": "blah blah",
-                "status": "added",
-                "children": null
+                "status": "added"
             },
             {
                 "key": "setting5",
                 "value2": {
                     "key5": "value5"
                 },
-                "status": "added",
-                "children": null
+                "status": "added"
             },
             {
                 "key": "setting6",
@@ -85,7 +78,6 @@ export default `[
                         "wow": "so much"
                     }
                 },
-                "status": null,
                 "children": [
                     {
                         "key": "doge",
@@ -95,14 +87,12 @@ export default `[
                         "value2": {
                             "wow": "so much"
                         },
-                        "status": null,
                         "children": [
                             {
                                 "key": "wow",
                                 "value1": "",
                                 "value2": "so much",
-                                "status": "changed",
-                                "children": null
+                                "status": "changed"
                             }
                         ]
                     },
@@ -110,14 +100,12 @@ export default `[
                         "key": "key",
                         "value1": "value",
                         "value2": "value",
-                        "status": "unchanged",
-                        "children": null
+                        "status": "unchanged"
                     },
                     {
                         "key": "ops",
                         "value2": "vops",
-                        "status": "added",
-                        "children": null
+                        "status": "added"
                     }
                 ]
             }
@@ -137,21 +125,18 @@ export default `[
             "baz": "bars",
             "nest": "str"
         },
-        "status": null,
         "children": [
             {
                 "key": "baz",
                 "value1": "bas",
                 "value2": "bars",
-                "status": "changed",
-                "children": null
+                "status": "changed"
             },
             {
                 "key": "foo",
                 "value1": "bar",
                 "value2": "bar",
-                "status": "unchanged",
-                "children": null
+                "status": "unchanged"
             },
             {
                 "key": "nest",
@@ -159,8 +144,7 @@ export default `[
                     "key": "value"
                 },
                 "value2": "str",
-                "status": "changed",
-                "children": null
+                "status": "changed"
             }
         ]
     },
@@ -172,8 +156,7 @@ export default `[
                 "id": 45
             }
         },
-        "status": "removed",
-        "children": null
+        "status": "removed"
     },
     {
         "key": "group3",
@@ -185,7 +168,6 @@ export default `[
             },
             "fee": 100500
         },
-        "status": "added",
-        "children": null
+        "status": "added"
     }
 ]`;

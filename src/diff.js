@@ -9,8 +9,6 @@ const buildDiffTree = (data1, data2) => {
       key,
       value1,
       value2,
-      status: null,
-      children: null,
     };
     if (_.isPlainObject(value1) && _.isPlainObject(value2) && value1 !== null && value2 !== null) {
       node.children = buildDiffTree(value1, value2);

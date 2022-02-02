@@ -15,7 +15,7 @@ const formatPlain = (diffTree) => {
     .filter((node) => node.status !== 'unchanged')
     .flatMap((node) => {
       const pathCurrent = (!path) ? node.key : [path, node.key].join('.');
-      if (node.children) {
+      if (_.has(node, 'children')) {
         return iter(node.children, pathCurrent);
       }
       const line = `Property '${pathCurrent}' was`;

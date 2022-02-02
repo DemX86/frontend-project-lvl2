@@ -24,7 +24,7 @@ const formatValue = (value, depth) => {
 const formatStylish = (diffTree) => {
   const iter = (tree, depth) => {
     const lines = tree.flatMap((node) => {
-      if (node.children) {
+      if (_.has(node, 'children')) {
         return `${node.key}: ${iter(node.children, depth + 1)}`;
       }
       return {
