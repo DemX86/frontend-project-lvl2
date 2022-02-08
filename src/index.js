@@ -1,7 +1,19 @@
+import fs from 'fs';
+import path from 'path';
+
 import buildDiffTree from './diff.js';
 import getFormatter from './formatters/index.js';
 import getParser from './parsers.js';
-import { getFileExt, readFileContent } from './files.js';
+
+const getFileExt = (filepath) => {
+  const ext = path.extname(filepath);
+  return ext.toLowerCase();
+};
+
+const readFileContent = (filepath) => {
+  const encoding = 'utf8';
+  return fs.readFileSync(filepath, encoding);
+};
 
 const loadData = (filepath) => {
   const fileExt = getFileExt(filepath);
