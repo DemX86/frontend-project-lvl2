@@ -7,7 +7,7 @@ import getParser from './parsers.js';
 
 const getFileExt = (filepath) => {
   const ext = path.extname(filepath);
-  return ext.toLowerCase();
+  return ext.slice(1).toLowerCase();
 };
 
 const readFileContent = (filepath) => {

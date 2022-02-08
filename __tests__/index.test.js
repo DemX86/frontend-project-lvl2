@@ -41,5 +41,5 @@ test('Format stylish, YAML files', () => {
 
 test('Unsupported files', () => {
   expect(() => genDiff(path1Txt, path2Json))
-    .toThrowError('Files with extension .txt are not supported');
+    .toThrowError('Files with extension txt are not supported');
 });

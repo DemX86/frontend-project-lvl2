@@ -2,9 +2,9 @@ import _ from 'lodash';
 import yaml from 'js-yaml';
 
 const PARSERS = {
-  '.json': JSON.parse,
-  '.yml': yaml.load,
-  '.yaml': yaml.load,
+  json: JSON.parse,
+  yml: yaml.load,
+  yaml: yaml.load,
 };
 
 const getParser = (fileExt) => {
