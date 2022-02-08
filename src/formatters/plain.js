@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const formatValue = (value) => {
+const stringify = (value) => {
   if (_.isPlainObject(value)) {
     return '[complex value]';
   }
@@ -20,9 +20,9 @@ const formatPlain = (diffTree) => {
       }
       const line = `Property '${pathCurrent}' was`;
       return {
-        added: `${line} added with value: ${formatValue(node.value2)}`,
+        added: `${line} added with value: ${stringify(node.value2)}`,
         removed: `${line} removed`,
-        changed: `${line} updated. From ${formatValue(node.value1)} to ${formatValue(node.value2)}`,
+        changed: `${line} updated. From ${stringify(node.value1)} to ${stringify(node.value2)}`,
       }[node.type];
     });
   const lines = iter(diffTree, '');

@@ -12,12 +12,12 @@ const formatBlock = (lines, depth) => {
   return ['{', ...linesFormatted, `${INDENT.repeat(depth - 1)}}`].join('\n');
 };
 
-const formatValue = (value, depth) => {
+const stringify = (value, depth) => {
   if (!_.isPlainObject(value)) {
     return value;
   }
   const lines = Object.entries(value)
-    .map(([k, v]) => `${k}: ${formatValue(v, depth + 1)}`);
+    .map(([k, v]) => `${k}: ${stringify(v, depth + 1)}`);
   return formatBlock(lines, depth + 1);
 };
 
@@ -28,12 +28,12 @@ const formatStylish = (diffTree) => {
         return `${node.key}: ${iter(node.children, depth + 1)}`;
       }
       return {
-        added: `+ ${node.key}: ${formatValue(node.value2, depth)}`,
-        removed: `- ${node.key}: ${formatValue(node.value1, depth)}`,
-        unchanged: `${node.key}: ${formatValue(node.value1, depth)}`,
+        added: `+ ${node.key}: ${stringify(node.value2, depth)}`,
+        removed: `- ${node.key}: ${stringify(node.value1, depth)}`,
+        unchanged: `${node.key}: ${stringify(node.value1, depth)}`,
         changed: [
-          `- ${node.key}: ${formatValue(node.value1, depth)}`,
-          `+ ${node.key}: ${formatValue(node.value2, depth)}`,
+          `- ${node.key}: ${stringify(node.value1, depth)}`,
+          `+ ${node.key}: ${stringify(node.value2, depth)}`,
         ],
       }[node.type];
     });
