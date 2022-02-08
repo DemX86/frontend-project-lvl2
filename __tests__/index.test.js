@@ -8,6 +8,7 @@ const path2Json = '__fixtures__/file2.json';
 const path1Yml = '__fixtures__/file1.yml';
 const path2Yaml = '__fixtures__/file2.yaml';
 const path1Txt = '__fixtures__/file1.txt';
+const pathNonExisting = 'non-existing.json';
 
 test('Format json, JSON files', () => {
   expect(genDiff(path1Json, path2Json, 'json'))
@@ -42,4 +43,9 @@ test('Format stylish, YAML files', () => {
 test('Unsupported files', () => {
   expect(() => genDiff(path1Txt, path2Json))
     .toThrowError('Files with extension txt are not supported');
+});
+
+test('Non-existing files', () => {
+  expect(() => genDiff(pathNonExisting, path2Json))
+    .toThrowError('ENOENT: no such file or directory, open \'non-existing.json\'');
 });

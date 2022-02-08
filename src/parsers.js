@@ -1,17 +1,17 @@
 import _ from 'lodash';
 import yaml from 'js-yaml';
 
-const PARSERS = {
+const PARSER_MAPPER = {
   json: JSON.parse,
   yml: yaml.load,
   yaml: yaml.load,
 };
 
-const getParser = (fileExt) => {
-  if (!_.has(PARSERS, fileExt)) {
-    throw new Error(`Files with extension ${fileExt} are not supported`);
+const parse = (content, ext) => {
+  if (!_.has(PARSER_MAPPER, ext)) {
+    throw new Error(`Files with extension ${ext} are not supported`);
   }
-  return PARSERS[fileExt];
+  return PARSER_MAPPER[ext](content);
 };
 
-export default getParser;
+export default parse;

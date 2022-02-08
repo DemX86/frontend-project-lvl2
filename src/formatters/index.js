@@ -2,12 +2,12 @@ import formatJson from './json.js';
 import formatPlain from './plain.js';
 import formatStylish from './stylish.js';
 
-const FORMATTERS = {
+const FORMAT_MAPPER = {
   json: formatJson,
   plain: formatPlain,
   stylish: formatStylish,
 };
 
-const getFormatter = (formatName) => FORMATTERS[formatName];
+const format = (tree, formatName) => FORMAT_MAPPER[formatName](tree);
 
-export default getFormatter;
+export default format;

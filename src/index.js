@@ -2,12 +2,13 @@ import fs from 'fs';
 import path from 'path';
 
 import buildDiffTree from './diff.js';
-import getFormatter from './formatters/index.js';
-import getParser from './parsers.js';
+import format from './formatters/index.js';
+import parse from './parsers.js';
 
 const getFileExt = (filepath) => {
   const ext = path.extname(filepath);
-  return ext.slice(1).toLowerCase();
+  const extWithoutDot = ext.slice(1);
+  return extWithoutDot.toLowerCase();
 };
 
 const readFileContent = (filepath) => {
@@ -16,19 +17,16 @@ const readFileContent = (filepath) => {
 };
 
 const loadData = (filepath) => {
-  const fileExt = getFileExt(filepath);
-  const parse = getParser(fileExt);
   const fileContent = readFileContent(filepath);
-  return parse(fileContent);
+  const fileExt = getFileExt(filepath);
+  return parse(fileContent, fileExt);
 };
 
 const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
   const fileData1 = loadData(filepath1);
   const fileData2 = loadData(filepath2);
   const diffTree = buildDiffTree(fileData1, fileData2);
-
-  const format = getFormatter(formatName);
-  return format(diffTree);
+  return format(diffTree, formatName);
 };
 
 export default genDiff;
