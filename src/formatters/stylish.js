@@ -35,7 +35,7 @@ const formatStylish = (diffTree) => {
           `- ${node.key}: ${formatValue(node.value1, depth)}`,
           `+ ${node.key}: ${formatValue(node.value2, depth)}`,
         ],
-      }[node.status];
+      }[node.type];
     });
     return formatBlock(lines, depth);
   };

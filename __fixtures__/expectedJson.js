@@ -5,35 +5,35 @@ export default `[
             {
                 "key": "follow",
                 "value2": false,
-                "status": "added"
+                "type": "added"
             },
             {
                 "key": "setting1",
                 "value1": "Value 1",
-                "status": "unchanged"
+                "type": "unchanged"
             },
             {
                 "key": "setting2",
                 "value1": 200,
-                "status": "removed"
+                "type": "removed"
             },
             {
                 "key": "setting3",
                 "value1": true,
                 "value2": null,
-                "status": "changed"
+                "type": "changed"
             },
             {
                 "key": "setting4",
                 "value2": "blah blah",
-                "status": "added"
+                "type": "added"
             },
             {
                 "key": "setting5",
                 "value2": {
                     "key5": "value5"
                 },
-                "status": "added"
+                "type": "added"
             },
             {
                 "key": "setting6",
@@ -45,19 +45,19 @@ export default `[
                                 "key": "wow",
                                 "value1": "",
                                 "value2": "so much",
-                                "status": "changed"
+                                "type": "changed"
                             }
                         ]
                     },
                     {
                         "key": "key",
                         "value1": "value",
-                        "status": "unchanged"
+                        "type": "unchanged"
                     },
                     {
                         "key": "ops",
                         "value2": "vops",
-                        "status": "added"
+                        "type": "added"
                     }
                 ]
             }
@@ -70,12 +70,12 @@ export default `[
                 "key": "baz",
                 "value1": "bas",
                 "value2": "bars",
-                "status": "changed"
+                "type": "changed"
             },
             {
                 "key": "foo",
                 "value1": "bar",
-                "status": "unchanged"
+                "type": "unchanged"
             },
             {
                 "key": "nest",
@@ -83,7 +83,7 @@ export default `[
                     "key": "value"
                 },
                 "value2": "str",
-                "status": "changed"
+                "type": "changed"
             }
         ]
     },
@@ -95,7 +95,7 @@ export default `[
                 "id": 45
             }
         },
-        "status": "removed"
+        "type": "removed"
     },
     {
         "key": "group3",
@@ -107,6 +107,6 @@ export default `[
             },
             "fee": 100500
         },
-        "status": "added"
+        "type": "added"
     }
 ]`;

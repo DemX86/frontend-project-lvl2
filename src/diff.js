@@ -15,28 +15,28 @@ const buildDiffTree = (data1, data2) => {
       return {
         key,
         value2,
-        status: 'added',
+        type: 'added',
       };
     }
     if (!_.has(data2, key)) {
       return {
         key,
         value1,
-        status: 'removed',
+        type: 'removed',
       };
     }
     if (value1 === value2) {
       return {
         key,
         value1,
-        status: 'unchanged',
+        type: 'unchanged',
       };
     }
     return {
       key,
       value1,
       value2,
-      status: 'changed',
+      type: 'changed',
     };
   });
 };

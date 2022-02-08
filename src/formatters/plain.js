@@ -12,7 +12,7 @@ const formatValue = (value) => {
 
 const formatPlain = (diffTree) => {
   const iter = (tree, path) => tree
-    .filter((node) => node.status !== 'unchanged')
+    .filter((node) => node.type !== 'unchanged')
     .flatMap((node) => {
       const pathCurrent = (!path) ? node.key : [path, node.key].join('.');
       if (_.has(node, 'children')) {
@@ -23,7 +23,7 @@ const formatPlain = (diffTree) => {
         added: `${line} added with value: ${formatValue(node.value2)}`,
         removed: `${line} removed`,
         changed: `${line} updated. From ${formatValue(node.value1)} to ${formatValue(node.value2)}`,
-      }[node.status];
+      }[node.type];
     });
   const lines = iter(diffTree, '');
   return lines.join('\n');
