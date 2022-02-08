@@ -2,7 +2,7 @@ import formatPlain from './plain.js';
 import formatStylish from './stylish.js';
 
 const FORMAT_MAPPER = {
-  json: (tree) => JSON.stringify(tree, null, 4),
+  json: (tree) => JSON.stringify(tree, null, ' '.repeat(4)),
   plain: formatPlain,
   stylish: formatStylish,
 };

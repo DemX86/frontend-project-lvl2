@@ -8,35 +8,36 @@ const buildDiffTree = (data1, data2) => {
     if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
       return {
         key,
+        type: 'nested',
         children: buildDiffTree(value1, value2),
       };
     }
     if (!_.has(data1, key)) {
       return {
         key,
-        value2,
         type: 'added',
+        value2,
       };
     }
     if (!_.has(data2, key)) {
       return {
         key,
-        value1,
         type: 'removed',
+        value1,
       };
     }
     if (value1 === value2) {
       return {
         key,
-        value1,
         type: 'unchanged',
+        value1,
       };
     }
     return {
       key,
+      type: 'changed',
       value1,
       value2,
-      type: 'changed',
     };
   });
 };

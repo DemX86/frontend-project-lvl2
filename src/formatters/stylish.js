@@ -21,25 +21,22 @@ const stringify = (value, depth) => {
   return formatBlock(lines, depth + 1);
 };
 
+const mapper = {
+  added: (node, depth) => `+ ${node.key}: ${stringify(node.value2, depth)}`,
+  removed: (node, depth) => `- ${node.key}: ${stringify(node.value1, depth)}`,
+  unchanged: (node, depth) => `${node.key}: ${stringify(node.value1, depth)}`,
+  changed: (node, depth) => [
+    `- ${node.key}: ${stringify(node.value1, depth)}`,
+    `+ ${node.key}: ${stringify(node.value2, depth)}`,
+  ],
+  nested: (node, depth, iter) => `${node.key}: ${iter(node.children, depth + 1)}`,
+};
+
 const formatStylish = (diffTree) => {
   const iter = (tree, depth) => {
-    const lines = tree.flatMap((node) => {
-      if (_.has(node, 'children')) {
-        return `${node.key}: ${iter(node.children, depth + 1)}`;
-      }
-      return {
-        added: `+ ${node.key}: ${stringify(node.value2, depth)}`,
-        removed: `- ${node.key}: ${stringify(node.value1, depth)}`,
-        unchanged: `${node.key}: ${stringify(node.value1, depth)}`,
-        changed: [
-          `- ${node.key}: ${stringify(node.value1, depth)}`,
-          `+ ${node.key}: ${stringify(node.value2, depth)}`,
-        ],
-      }[node.type];
-    });
+    const lines = tree.flatMap((node) => mapper[node.type](node, depth, iter));
     return formatBlock(lines, depth);
   };
-
   return iter(diffTree, 1);
 };
 
